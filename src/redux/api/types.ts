@@ -1,10 +1,13 @@
 
 
 export interface IUser{
-    username: string,
-    email: string, 
+    record: object,
+    token : string
+}
+
+export interface IUserRequest{
+    identity: string,
     password: string,
-    id: string,
-    phone_user: number,
-    type_user: string
+    phone: number | null,
+    type: string |null;
 }
