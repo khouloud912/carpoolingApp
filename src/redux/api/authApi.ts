@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IUser } from "./types";
+import { IUser, IUserRequest } from "./types";
 
 export const authApi = createApi({
   reducerPath: "authAPi",
@@ -9,14 +9,13 @@ export const authApi = createApi({
   tagTypes: ["User"],
 
   endpoints: (builder) => ({
-    loginUser: builder.mutation<IUser, null>({
-      query: (payload) => ({
+    loginUser: builder.mutation<IUser, IUserRequest>({
+      query: (payload) => (
+        console.log("ff", payload),
+        {  
         url: `collections/user/auth-with-password`,
         method: "POST",
         body: payload,
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
       }),
       transformResponse: (response: { data: IUser }, meta, arg) => response.data,
       transformErrorResponse: (
